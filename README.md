@@ -2,8 +2,12 @@
 This is a compilation of scripts that makes it easy to deploy a openldap server with phpldapadmin and have it be the authentication backend for an OpenVPN server.
 
 ## Prerequisites
-In order to run the OpenVPN server, you will first need to build the image by following the steps at [boos1993/openvpn-server-ldap-otp](https://github.com/boos1993/openvpn-server-ldap-otp).
+In order to run the OpenVPN server, you will first need to build the image at [boos1993/openvpn-server-ldap-otp](https://github.com/boos1993/openvpn-server-ldap-otp).
 
+```
+git clone https://github.com/boos1993/openvpn-server-ldap-otp
+docker build -t openvpn-ldap-otp ./openvpn-server-ldap-otp
+```
 ## Starting the OpenVPN LDAP stack
 1) First clone this repository.
 ```
