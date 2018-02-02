@@ -32,5 +32,5 @@ sudo docker run \
 	--env "OVPN_TLS_CIPHERS=$OPENVPN_TLS_CIPHERS" \
 	--env "USE_CLIENT_CERTIFICATE=false" \
 	--cap-add=NET_ADMIN \
-	aboos/openvpn-ldap-otp
+	openvpn-ldap-otp
 
