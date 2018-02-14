@@ -20,9 +20,9 @@ cp example.env docker.env
 Then edit `docker.env` to match your desired configuration.
 
 3) Start DNSDock
-``
+```
 ./start-dnsdock.sh
-``
+```
 
 4) Start OpenLDAP and PHPLDAPAdmin
 ```
