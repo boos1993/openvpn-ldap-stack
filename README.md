@@ -19,12 +19,17 @@ cp example.env docker.env
 ```
 Then edit `docker.env` to match your desired configuration.
 
-3) Start OpenLDAP and PHPLDAPAdmin
+3) Start DNSDock
+``
+./start-dnsdock.sh
+``
+
+4) Start OpenLDAP and PHPLDAPAdmin
 ```
 ./start-openldap.sh
 ```
 
-4) Configure your LDAP server
+5) Configure your LDAP server
 ```
 cd openldap
 ./init_ldap_schema.sh
@@ -32,12 +37,12 @@ cd openldap
 cd ..
 ```
 
-5) Start OpenVPN
+6) Start OpenVPN
 ```
 ./start-openvpn.sh
 ```
 
-6) Create your OpenVPN config file (@yourdomain.com.ovpn)
+7) Create your OpenVPN config file (@yourdomain.com.ovpn)
 ```
 ./get-openvpn-config.sh
 ```
