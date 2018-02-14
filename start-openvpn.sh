@@ -2,9 +2,9 @@
 
 source docker.env
 
-docker stop $OPENVPN_NAME
-docker rm $OPENVPN_NAME
-sudo docker run \
+docker stop $OPENVPN_NAME || true
+docker rm $OPENVPN_NAME || true
+docker run \
 	-d \
 	--name=$OPENVPN_NAME \
 	--restart=always \

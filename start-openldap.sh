@@ -1,8 +1,8 @@
 #!/bin/bash -e
 source docker.env
 
-docker stop openldap
-docker rm openldap
+docker stop $LDAP_HOSTNAME || true
+docker rm $LDAP_HOSTNAME || true
 docker run \
 	--name $LDAP_HOSTNAME \
 	--hostname $LDAP_HOSTNAME \
@@ -13,9 +13,9 @@ docker run \
 	-v $LDAP_CONFIG:/etc/ldap/slapd.d \
 	osixia/openldap:1.1.8
 
-docker stop phpldapadmin
-docker rm phpldapadmin
-docker run --name phpldapadmin \
+docker stop $PHPLDAP_HOSTNAME || true
+docker rm $PHPLDAP_HOSTNAME || true
+docker run --name $PHPLDAP_HOSTNAME \
 		--hostname $PHPLDAP_HOSTNAME \
 		--link $LDAP_HOSTNAME \
 		--env PHPLDAPADMIN_HTTPS=false \
