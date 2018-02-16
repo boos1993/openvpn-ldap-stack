@@ -2,12 +2,14 @@
 
 source docker.env
 
-docker stop $DNS_NAME > /dev/null
-docker rm $DNS_NAME > /dev/null
+docker stop $DNS_NAME || true
+docker rm $DNS_NAME || true
 docker run \
-	-d \
+	--detach \
 	--name=$DNS_NAME \
+	--net=$NETWORK_NAME \
+	--ip=$DNS_IPV4 \
+	--restart=always \
 	-v /var/run/docker.sock:/var/run/docker.sock \
-	tonistiigi/dnsdock \
+	aacebedo/dnsdock:latest-amd64 \
 	--domain $DNS_DOMAIN
-

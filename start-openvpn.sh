@@ -5,15 +5,18 @@ source docker.env
 docker stop $OPENVPN_NAME || true
 docker rm $OPENVPN_NAME || true
 docker run \
-	-d \
+        --label com.dnsdock.alias="$OPENVPN_NAME.$DNS_DOMAIN" \
+	--detach \
 	--name=$OPENVPN_NAME \
+	--net=$NETWORK_NAME \
+	--dns-search=$DNS_DOMAIN \
+	--ip=$OPENVPN_IPV4 \
+	-l com.dnsdock.ip_addr=$OPENVPN_IPV4 \
 	--restart=always \
 	-v $OPENVPN_STORAGE_HOST:/etc/openvpn \
-	--link $LDAP_HOSTNAME \
-	--link $DNS_NAME \
 	-p 1194:1194/udp \
 	--env "OVPN_SERVER_CN=$OPENVPN_DOMAIN" \
-	--env "LDAP_URI=ldap://${LDAP_HOSTNAME}" \
+	--env "LDAP_URI=ldap://${LDAP_NAME}" \
 	--env "LDAP_BASE_DN=$LDAP_BASE_DN" \
 	--env "LDAP_BIND_USER_DN=$LDAP_CONNECT" \
 	--env "LDAP_BIND_USER_PASS=$LDAP_CONNECT_PASS" \
@@ -22,8 +25,8 @@ docker run \
 	--env "OVPN_NETWORK=$OPENVPN_NETWORK" \
 	--env "OVPN_ROUTES=$OPENVPN_ROUTES" \
 	--env "OVPN_NAT=$OPENVPN_NAT" \
-	--env "OVPN_DNS_SERVERS=`./get-docker-ip.sh ${OPENVPN_DNS}`" \
-	--env "OVPN_DNS_SEARCH_DOMAIN=$OPENVPN_DNS_SEARCH_DOMAIN" \
+	--env "OVPN_DNS_SERVERS=$DNS_IPV4" \
+	--env "OVPN_DNS_SEARCH_DOMAIN=$DNS_DOMAIN" \
 	--env "OVPN_VERBOSITY=$OPENVPN_VERBOSITY" \
 	--env "REGENERATE_CERTS=$OPENVPN_REGENERATE_CERTS" \
 	--env "KEY_LENGTH=$OPENVPN_KEY_LENGTH" \
