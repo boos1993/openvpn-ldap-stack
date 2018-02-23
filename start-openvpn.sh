@@ -33,7 +33,7 @@ docker run \
 	--env "DEBUG=$OPENVPN_DEBUG" \
 	--env "ENABLE_OTP=$OPENVPN_OTP" \
 	--env "OVPN_TLS_CIPHERS=$OPENVPN_TLS_CIPHERS" \
-	--env "USE_CLIENT_CERTIFICATE=false" \
+	--env "USE_CLIENT_CERTIFICATE=$OPENVPN_USE_CLIENT_CERT" \
 	--cap-add=NET_ADMIN \
 	openvpn-ldap-otp
 
