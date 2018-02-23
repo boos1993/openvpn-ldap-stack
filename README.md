@@ -47,6 +47,26 @@ cd ..
 ./get-openvpn-config.sh
 ```
 
+## Extras
+I've included some extra docker run scripts that are setup to use the environment variables from this repo. They are optional but I find them to be very useful.
+
+### NextCloud
+I highly recommend NextCloud for online file storage, chat, calendar, etc. It is easy to use with a nice web interface and also supports LDAP authentication. The container creation is scripted but still requires manually configuring NextCloud to use the LDAP authentication module.
+```
+cd extras
+./start-nextcloud.sh
+```
+<TODO: Add instructions for enabling NextCloud LDAP authentication>
+
+### SCM Manager
+SCM manager is a great tool for hosting your own code repositories. It allows you to authenticate via LDAP and set different permissions for those LDAP users. It requires some manual setup to enable LDAP authentication but the container creation is scripted.
+
+```
+cd extras
+./start-scm-manager.sh
+```
+<TODO: Add instructions for enabling SCM Manager LDAP authentication>
+
 ## Connecting to your OpenVPN network
 Just download your @yourdomain.com.ovpn file to the client you intend to connect your VPN and login with the LDAP user credentials the were created in step 4. 
 
