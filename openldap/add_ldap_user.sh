@@ -6,7 +6,7 @@ USER_UID=$1
 USER_UIDNUM=$2
 USER_GIDNUM=$3
 
-docker exec -i ${LDAP_HOSTNAME} ldapadd -xvD $LDAP_CONNECT -w $LDAP_CONNECT_PASS <<EOF
+docker exec -i ${LDAP_NAME} ldapadd -xvD $LDAP_CONNECT -w $LDAP_CONNECT_PASS <<EOF
 dn: uid=${USER_UID},ou=Users,${LDAP_BASE_DN}
 objectClass: top
 objectClass: account
