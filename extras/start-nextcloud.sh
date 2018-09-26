@@ -15,6 +15,7 @@ docker run \
 	-e POSTGRES_USER=$NEXTCLOUD_DB_USER \
 	-e POSTGRES_PASSWORD=$NEXTCLOUD_DB_PASSWORD \
 	-v $NEXTCLOUD_DB_STORAGE_HOST:/var/lib/postgresql/data \
+        --restart=always \
 	postgres
 
 docker stop $NEXTCLOUD_NAME || true
@@ -31,4 +32,5 @@ docker run \
 	-e POSTGRES_PASSWORD=$NEXTCLOUD_DB_PASSWORD \
 	-e POSTGRES_HOST=$NEXTCLOUD_DB_NAME \
 	-v $NEXTCLOUD_STORAGE_HOST:/var/www/html \
-	nextcloud
+        --restart=always \
+	nextcloud:13.0.6
